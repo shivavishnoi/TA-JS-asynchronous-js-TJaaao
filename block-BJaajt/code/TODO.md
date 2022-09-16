@@ -16,7 +16,7 @@ Your app will do the following:
 
 Your app will do the following:
 
-- Display an image of cat coming from thecatapi link given below.
+- Display an image of cat coming from the cat api link given below.
 - Add a button with the text `Get New Cat`
 - When clicked it will display image of a new cat
 
