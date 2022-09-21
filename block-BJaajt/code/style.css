@@ -1,0 +1,94 @@
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+  background-color: rgb(220, 151, 111);
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 10px 0;
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+}
+/* custom css  */
+.github {
+  text-align: center;
+}
+.img-git {
+  width: 100px;
+  height: 95px;
+  border-radius: 50%;
+  margin: 10px;
+}
+.img-git-f {
+  width: 75px;
+  height: 70px;
+  border-radius: 48%;
+  margin: 0 10px;
+}
+input {
+  display: block;
+  margin: 10px auto;
+}
+h1 {
+  padding: 25px 0;
+  background-color: black;
+  color: aliceblue;
+}
+.followers,
+.following {
+  margin: 10px 0;
+}
+.cat {
+  text-align: center;
+}
+.img-cat {
+  width: 300px;
+  height: 250px;
+  margin: 15px 0;
+}
+button {
+  display: block;
+  padding: 0.7rem 1rem;
+  margin: 10px auto;
+  cursor: pointer;
+}
