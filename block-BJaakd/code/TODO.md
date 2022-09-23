@@ -30,6 +30,8 @@ Promise.resolve().then(() => console.log('C'));
 console.log('D');
 ```
 
+o/p-> A,D,C,B
+
 5. Write a function named `wait` that accepts `time` in ms returns a promise. The promise gets resolved after given time.
 
 ```js
@@ -70,6 +72,7 @@ console.log('D');
 
 ```js
 // Your code
+4;
 ```
 
 9. Do the following:
@@ -81,11 +84,12 @@ console.log('D');
 
 ```js
 // Your code
+1;
 ```
 
 10. Try to understand the difference between the problem 8 and 9. Write your observation.
 
-11. Do the following
+in 10 promise chaining is not happening 11. Do the following
 
 - Create a promise and resolve it with `John`
 - Use `.then` and return another promise that resolves with `Arya`
