@@ -52,15 +52,50 @@
 // first.then(() => `3`);
 // first.then(() => `4`);
 
-let ten = Promise.resolve(`John`).then(() => {
-  return new Promise((res, rej) => {
-    res(`arya`);
-  }).then((data) => {
-    console.log(data);
-    setTimeout(() => {
-      return new Promise((resolve, reject) => {
-        resolve(`bran`);
-      });
-    }, 2000);
-  });
-});
+Promise.resolve(`John`)
+  .then(() => {
+    return new Promise((res, rej) => {
+      res(`arya`);
+    });
+  })
+  .then(() => {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+        res(`bran`);
+      }, 2000);
+    });
+  })
+  .finally(console.log);
+
+// from solutions
+// function wait(time) {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       res(`resolved`);
+//     }, time);
+//   });
+// }
+
+// let six = new Promise((res, rej) => {
+//   res(21);
+// })
+//   .then((val) => val + 10)
+//   .then((val) => val + 100)
+//   .then((res) => {
+//     if (res > 100) throw new Error(`wrong`);
+//   })
+//   .catch(console.error);
+
+let seven = new Promise((res, rej) => {
+  res([`A`]);
+})
+  .then((arr) => {
+    return arr.concat(`B`);
+  })
+  .then((arr) => {
+    return arr.reduce((acc, cv, i) => {
+      acc[i] = cv;
+      return acc;
+    }, {});
+  })
+  .finally(console.log);
