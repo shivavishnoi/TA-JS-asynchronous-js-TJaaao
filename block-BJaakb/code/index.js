@@ -9,10 +9,15 @@ function fetch(url) {
 }
 
 let root = document.querySelector(`.root`);
-function createUI(src) {
-  let img = document.createElement(`img`);
-  img.src = src;
-  root.append(img);
+function createUI(images) {
+  for (let i = 0; i < 11; i++) {
+    let img = document.createElement(`img`);
+    img.src = images[i].urls.small;
+    root.append(img);
+    console.log(i);
+
+    // console.log(data.results[i].urls.small);
+  }
 }
 
 document.querySelector(`input`).addEventListener(`keyup`, (e) => {
@@ -22,10 +27,7 @@ document.querySelector(`input`).addEventListener(`keyup`, (e) => {
       `https://api.unsplash.com/search/photos?query=${e.target.value}&client_id=ViPtMJ-1gwRZyKgSv-9jFn3DK3GXSs5Z-EN_--eRva8`
     )
       .then((data) => {
-        for (let i = 0; i < 11; i++) {
-          createUI(data.results[i].urls.small);
-          // console.log(data.results[i].urls.small);
-        }
+        createUI(data.results);
       })
       .catch((error) => {
         alert(`Something wrong${error}`);
