@@ -1,0 +1,36 @@
+body {
+  background-color: rgb(224, 147, 32);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  padding: 1rem;
+  color: rgb(17, 89, 141);
+}
+.container {
+  width: 40%;
+  margin: 0 auto;
+  background-color: aliceblue;
+  padding: 1rem;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid black;
+  padding: 0.5rem;
+  margin: 0.4rem 0;
+}
+input[type='text'] {
+  width: 96%;
+  padding: 0.5rem;
+}
+span {
+  padding: 0.1rem;
+  cursor: pointer;
+}
