@@ -10,11 +10,17 @@ class Todo {
       input.setAttribute(`data-id`, todo._id);
       input.checked = todo.isCompleted;
       input.setAttribute(`name`, `status`);
+      input.addEventListener(`click`, (e) => {
+        handleCheckboxes(e);
+      });
       let h4 = document.createElement(`h4`);
       h4.innerText = todo.title;
       let span = document.createElement(`span`);
       span.innerText = '❌';
       span.setAttribute(`data-id`, todo._id);
+      span.addEventListener(`click`, (e) => {
+        handleDelete(e);
+      });
       li.append(input, h4, span);
       root.append(li);
     });
@@ -50,10 +56,11 @@ class Todo {
       body: JSON.stringify({
         todo: { title, isCompleted },
       }),
-    }).catch((error) => {
-      document.querySelector(`.error`).innerText = `error`;
-    });
-    this.getData();
+    })
+      .then(() => this.getData)
+      .catch((error) => {
+        document.querySelector(`.error`).innerText = `error`;
+      });
   }
   deleteData(id) {
     fetch(`${baseURL}/${id}`, {
@@ -61,10 +68,11 @@ class Todo {
       headers: {
         'Content-Type': 'application/json',
       },
-    }).catch((error) => {
-      document.querySelector(`.error`).innerText = `error`;
-    });
-    this.getData();
+    })
+      .then(() => this.getData())
+      .catch((error) => {
+        document.querySelector(`.error`).innerText = `error`;
+      });
   }
   updateData(id, value) {
     fetch(`${baseURL}/${id}`, {
@@ -73,9 +81,11 @@ class Todo {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ todo: { isCompleted: value } }), // body data type must match "Content-Type" header
-    }).catch((error) => {
-      document.querySelector(`.error`).innerText = `error`;
-    });
+    })
+      .then(() => this.getData())
+      .catch((error) => {
+        document.querySelector(`.error`).innerText = `error`;
+      });
     // this.getData();
   }
 }
@@ -86,15 +96,37 @@ todosList.getData();
 
 setTimeout(() => {
   // adding event listener to span
-  document.querySelectorAll(`span`).forEach((elm) => {
-    elm.addEventListener(`click`, (e) => {
-      console.log(e.target.dataset.id);
-      todosList.deleteData(e.target.dataset.id);
-      // re-rendering not working
-      //  todosList.getData();
-    });
-  });
+  // document.querySelectorAll(`span`).forEach((elm) => {
+  //   elm.addEventListener(`click`, (e) => {
+  //     console.log(e.target.dataset.id);
+  //     todosList.deleteData(e.target.dataset.id);
+  //     // re-rendering not working
+  //     //  todosList.getData();
+  //   });
+  // });
   // adding event listener to searchbox
+  // document
+  //   .querySelector(`input[type = "text"]`)
+  //   .addEventListener(`keyup`, (e) => {
+  //     if (e.keyCode == 13) {
+  //       todosList.addData(e.target.value);
+  //       e.target.value = '';
+  //     }
+  //   });
+  // adding event listener to checkboxes
+  // document.querySelectorAll(`input[type="checkbox"]`).forEach((box) => {
+  //   box.addEventListener(`click`, (e) => {
+  //     console.log(e.target.checked);
+  //     todosList.updateData(e.target.dataset.id, e.target.checked);
+  //   });
+  // });
+}, 5000);
+
+function handleCheckboxes(e) {
+  console.log(e.target.checked);
+  todosList.updateData(e.target.dataset.id, e.target.checked);
+}
+function handleSearch() {
   document
     .querySelector(`input[type = "text"]`)
     .addEventListener(`keyup`, (e) => {
@@ -103,12 +135,9 @@ setTimeout(() => {
         e.target.value = '';
       }
     });
-
-  // adding event listener to checkboxes
-  document.querySelectorAll(`input[type="checkbox"]`).forEach((box) => {
-    box.addEventListener(`click`, (e) => {
-      console.log(e.target.checked);
-      todosList.updateData(e.target.dataset.id, e.target.checked);
-    });
-  });
-}, 5000);
+}
+handleSearch();
+function handleDelete(e) {
+  console.log(e.target.dataset.id);
+  todosList.deleteData(e.target.dataset.id);
+}
